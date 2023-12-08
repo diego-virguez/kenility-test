@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de dirección</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function getFormData($form){
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function(n, i){
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/address/autocomplete',
+                    data: JSON.stringify(getFormData($('form'))),
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Basic " + btoa('demo-username:demo-password')
+                    },
+                    success: function(response) {
+                        $('#resultado').val(JSON.stringify(response));
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $('#resultado').val("Error: " + jqXHR.status + " " + jqXHR.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <label for="addressPrefix">Dirección:</label>
+    <input type="text" id="addressPrefix" name="addressPrefix" autocomplete="off">
+    <br><br>
+    <label for="city">Ciudad:</label>
+    <input type="text" id="city" name="city" autocomplete="off">
+    <br><br>
+    <label for="state">Estado:</label>
+    <input type="text" id="state" name="state" autocomplete="off">
+    <br><br>
+    <label for="zipCode">Código postal:</label>
+    <input type="text" id="zipCode" name="zipCode" autocomplete="off">
+    <br><br>
+    <input type="submit" value="Enviar">
+</form>
+<br><br>
+<label for="resultado">Resultado:</label>
+<br>
+<textarea id="resultado" name="resultado" rows="10" cols="50"></textarea>
+</body>
+</html>

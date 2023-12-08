@@ -12,3 +12,9 @@ server:
 logging:
   level:
     ROOT: INFO
+
+lob:
+  apikey: test_pub_0056df3121419b9d9f9f84e9057ff2d
+  # test_pub_0056df3121419b9d9f9f84e9057ff2d
+  # Use above key for dummy response and below is the passed by you that throws 401
+  # live_pub_a15953d6b86c7028cbf7605ed360eee

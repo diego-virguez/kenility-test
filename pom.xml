@@ -21,6 +21,16 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.lob</groupId>
+			<artifactId>lob-java</artifactId>
+			<version>13.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
