@@ -11,18 +11,25 @@ import org.openapitools.client.model.UsAutocompletionsWritable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class ApiConsumer {
 
     @Value("${lob.apikey}")
     private String lobApiKey;
 
-    public UsAutocompletions callAutoCompletions(UsAutocompletionsWritable autoCompletionWritable){
-        ApiClient lobClient = Configuration.getDefaultApiClient();
+    private ApiClient lobClient;
+
+    @PostConstruct
+    private void initLobClient(){
+        lobClient = Configuration.getDefaultApiClient();
 
         HttpBasicAuth basicAuth = (HttpBasicAuth) lobClient.getAuthentication("basicAuth");
         basicAuth.setUsername(lobApiKey);
+    }
 
+    public UsAutocompletions callAutoCompletions(UsAutocompletionsWritable autoCompletionWritable){
         UsAutocompletionsApi apiInstance = new UsAutocompletionsApi(lobClient);
 
         try {

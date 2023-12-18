@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "11dfb025-5f38-4af2-957b-73b3200c29ad",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12877648"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo-password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo-username",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"addressPrefix\": \"1 suggestion\",\r\n    \"city\": \"\",\r\n    \"state\": \"CA\",\r\n    \"zipCode\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/address/autocomplete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"address",
+						"autocomplete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
